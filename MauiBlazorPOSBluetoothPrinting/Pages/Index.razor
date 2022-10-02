@@ -1,0 +1,27 @@
+﻿@page "/"
+
+
+
+@using MauiBlazorPOSBluetoothPrinting.Class;
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+<MudIconButton Icon="@Icons.Material.Filled.Print" Color="Color.Primary" OnClick="( ()=> Print())" />
+
+@code {
+
+
+    [Inject]
+    public INativePages IPrint { get; set; }
+
+
+    async Task Print()
+    {
+        await IPrint.StartActivityInPrinting("MTP-2", "WELCOME TO .NET MAUI.").ConfigureAwait(false);
+
+
+    }
+}
